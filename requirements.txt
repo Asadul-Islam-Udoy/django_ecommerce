@@ -1,0 +1,9 @@
+django
+djangorestframework
+environs
+
+
+# install commend
+# 1. pip install -r requirements.txt 
+# 2. django-admin startproject ecommerce
+# 3. python -m django startproject users_api
