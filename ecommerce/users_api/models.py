@@ -7,6 +7,7 @@ class CustomUserManage(BaseUserManager):
             raise ValueError("Email is must be required!")
         email = self.normalize_email(email)
         user = self.model(email=email,**extra_fields)
+        user.set_password(password)
         user.save()
         return user
     def create_superuser(self,email,password=None,**extra_fields):
@@ -17,8 +18,9 @@ class CustomUser(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=100,blank=False,null=False)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=16)
+    is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
-    is_supperuser = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
     objects = CustomUserManage()
     
